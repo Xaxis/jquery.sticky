@@ -11,7 +11,7 @@ module.exports = function(grunt) {
      */
     project: {
       js: [
-        'src/jquery.plugin.js'
+        'src/jquery.sticky.js'
       ]
     },
 
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          'dist/jquery.plugin.min.js': ['src/jquery.plugin.js']
+          'dist/jquery.sticky.min.js': ['src/jquery.sticky.js']
         }
       }
     },

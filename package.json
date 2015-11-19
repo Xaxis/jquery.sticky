@@ -1,7 +1,7 @@
 {
-  "name": "jquery.plugin",
+  "name": "jquery.sticky",
   "version": "1.0.0",
-  "description": "A jQuery plugin scaffolding to assist in the rapid development of jQuery plugins.",
+  "description": "A jQuery plugin for sticking an element at a fixed position when a given scroll point is reached.",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Xaxis/jquery.plugin.git"
+    "url": "git+https://github.com/Xaxis/jquery.sticky.git"
   },
   "author": "Wil Neeley <william.neeley@gmail.com> (https://github.com/Xaxis)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Xaxis/jquery.plugin/issues"
+    "url": "https://github.com/Xaxis/jquery.sticky/issues"
   },
-  "homepage": "https://github.com/Xaxis/jquery.plugin#readme",
+  "homepage": "https://github.com/Xaxis/jquery.sticky#readme",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-uglify": "^0.9.1",

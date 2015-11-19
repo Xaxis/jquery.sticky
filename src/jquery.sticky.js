@@ -1,5 +1,5 @@
 /**
- * jQuery.plugin
+ * jQuery.sticky
  *
  * (a) Wil Neeley
  * (c) Code may be freely distributed under the MIT license.
@@ -9,7 +9,7 @@
   "use strict";
 
   var
-    plugin_name   = 'plugin',
+    plugin_name   = 'sticky',
     defaults      = {
     };
 
