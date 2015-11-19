@@ -11,6 +11,7 @@
   var
     plugin_name   = 'sticky',
     defaults      = {
+      start: 'top'
     };
 
   // Plugin constructor
@@ -25,12 +26,108 @@
   // Extend plugin prototype
   $.extend(Plugin.prototype, {
 
-    // Initialization method - plugin bootstrap
+    /**
+     * Plugin initialization.
+     */
     init: function() {
-      this.privatePluginMethod();
+      var
+        plugin        = this;
+      this.last_scroll_pos = $(window).scrollTop();
+      this.trackElementScrollPosition();
+      $(window).on('scroll', function() {
+        plugin.trackElementScrollPosition.call(plugin);
+      });
     },
-    privatePluginMethod: function() {
-      // Do stuff here ...
+
+    /**
+     * Update "stickyness" based on element's position relative to scrolling.
+     */
+    trackElementScrollPosition: function() {
+      var
+        plugin        = this;
+      $(this.element).each(function(idx, value) {
+        var
+          elm               = $(value),
+          pos               = elm.offset(),
+          elm_top           = pos.top,
+          elm_h             = elm.outerHeight(),
+          scroll_pos        = $(window).scrollTop(),
+          position          = elm.css('position'),
+          stick_point       = elm.data('stick_point'),
+          scroll_dir        = '';
+
+        // Determine scroll direction
+        if (scroll_pos > this.last_scroll_pos) {
+          scroll_dir = 'down';
+        } else if (scroll_pos < this.last_scroll_pos) {
+          scroll_dir = 'up';
+        }
+
+        // Update scroll position property
+        this.last_scroll_pos = scroll_pos;
+
+        // Stick based on start point
+        switch (plugin.options.start) {
+
+          // Top
+          case 'top' :
+            if ((scroll_pos > elm_top) && position != 'fixed') {
+              plugin.stickElement.call(plugin, elm, pos, scroll_pos);
+            }
+            else if (position == 'fixed' && (scroll_pos < stick_point)) {
+              plugin.unstickElement.call(plugin, elm);
+            }
+            break;
+
+          // Bottom
+          case 'bottom' :
+            if ((scroll_pos > elm_top + elm_h) && position != 'fixed') {
+              plugin.stickElement.call(plugin, elm, pos, scroll_pos);
+            }
+            else if (position == 'fixed' && (scroll_pos < stick_point)) {
+              plugin.unstickElement.call(plugin, elm);
+            }
+            break;
+
+          // Bottom
+          case 'middle' :
+            if ((scroll_pos > elm_top + (elm_h / 2)) && position != 'fixed') {
+              plugin.stickElement.call(plugin, elm, pos, scroll_pos);
+            }
+            else if (position == 'fixed' && (scroll_pos < stick_point)) {
+              plugin.unstickElement.call(plugin, elm);
+            }
+            break;
+        }
+      });
+    },
+
+    /**
+     * Stick an element at a fixed position.
+     */
+    stickElement: function( elm, pos, scroll_pos ) {
+      var
+        stuck           = elm.data('stuck');
+      if (!stuck) {
+        elm.data('stuck', true);
+        elm.data('stick_point', scroll_pos);
+        elm.css({
+          position: 'fixed',
+          top: pos.top
+        });
+      }
+    },
+
+    /**
+     * Unstick an element from a fixed position.
+     */
+    unstickElement: function( elm ) {
+      var
+        stuck           = elm.data('stuck');
+      if (stuck) {
+        elm.data('stuck', false);
+        elm.css('position', '');
+      }
     }
   });
 
