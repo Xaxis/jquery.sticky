@@ -11,7 +11,8 @@
   var
     plugin_name   = 'sticky',
     defaults      = {
-      start: 'top'
+      start: 'top',
+      smooth: false
     };
 
   // Plugin constructor
@@ -113,8 +114,15 @@
         elm.data('stick_point', scroll_pos);
         elm.css({
           position: 'fixed',
-          top: pos.top
+          top: 0
         });
+
+        // Create smooth position transition by inserting same dimension element in place of fixed dimension element
+        if (this.options.smooth) {
+          var dim_elm = $('<div>');
+          dim_elm.css('height', elm.outerHeight()).insertBefore(elm);
+          elm.data('dim_elm', dim_elm);
+        }
       }
     },
 
@@ -127,6 +135,12 @@
       if (stuck) {
         elm.data('stuck', false);
         elm.css('position', '');
+
+        // Remove dimensional placeholder element
+        if (this.options.smooth) {
+          var dim_elm = elm.data('dim_elm');
+          dim_elm.remove();
+        }
       }
     }
   });

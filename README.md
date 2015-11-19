@@ -1,7 +1,5 @@
 # jquery.sticky
 
-Version 1.0.0
-
 ## Summary
 
 A jQuery plugin for sticking an element at a fixed position when a given scroll point is reached.
@@ -34,8 +32,15 @@ up the screen.
 
 Available property values for `start` are `top`, `middle`, and `bottom`.
 
-## Changelog
+### Smooth Element Transitions
 
-### Version 1.0.0
+Often when an element moves from being positioned relatively to fixed the effect is a page jump. jQuery.sticky attempts
+to solve for this.
 
-* initial release
+```javascript
+// Stick element when bottom is reached
+$('#sticky-nav').sticky({
+    start: 'bottom',
+    smooth: true
+});
+```
