@@ -44,3 +44,17 @@ $('#sticky-nav').sticky({
     smooth: true
 });
 ```
+
+### Stack Multiple Stickies
+
+Sometimes you'll want multiple elements to stick to the top when they scroll out of view and stack in their relative 
+order.
+
+```javascript
+// Stick element when bottom is reached
+$('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
+    start: 'bottom',
+    smooth: true,
+    stack: true
+});
+```
