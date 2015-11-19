@@ -34,6 +34,10 @@
         p {
             padding: 20px;
         }
+        .transition {
+            height: 15px !important;
+            transition: height 400ms ease;
+        }
     </style>
 </head>
 <body>
@@ -111,13 +115,40 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
     */
 
     // Stack multiple elements
+    /*
     $('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
         start: 'bottom',
         smooth: true,
         stack: true
     });
+    */
+
+    // Multiple calls to plugin
+    /*
+    $('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
+        start: 'bottom',
+        smooth: true,
+        stack: true
+    });
+    $('#sticky-nav-4').sticky({
+        start: 'bottom',
+        smooth: true,
+        stack: true
+    });
+    */
 
     // Fire callbacks
+    $('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
+        start: 'bottom',
+        smooth: true,
+        stack: true,
+        onStick: function( elm ) {
+            elm.addClass('transition');
+        },
+        onUnstick: function( elm ) {
+            elm.removeClass('transition');
+        }
+    });
 
 </script>
 </body>

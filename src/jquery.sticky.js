@@ -13,7 +13,9 @@
     defaults      = {
       start: 'top',
       smooth: false,
-      stack: false
+      stack: false,
+      onStick: null,
+      onUnstick: null
     };
 
   // Plugin constructor
@@ -121,6 +123,11 @@
           dim_elm.css('height', elm.outerHeight()).insertBefore(elm);
           elm.data('dim_elm', dim_elm);
         }
+
+        // Execute callback
+        if (this.options.onStick) {
+          this.options.onStick(elm);
+        }
       }
     },
 
@@ -139,6 +146,11 @@
           var dim_elm = elm.data('dim_elm');
           dim_elm.remove();
         }
+
+        // Execute callback
+        if (this.options.onStick) {
+          this.options.onUnstick(elm);
+        }
       }
     }
   });
@@ -146,11 +158,6 @@
   // Plugin wrapper
   $.fn[plugin_name] = function ( options ) {
     return $.data(this, 'plugin_' + plugin_name, new Plugin( this, options ));
-    //return this.each(function () {
-    //  if (!$.data(this, 'plugin_' + plugin_name)) {
-    //    $.data(this, 'plugin_' + plugin_name, new Plugin( this, options ));
-    //  }
-    //});
   };
 
 })( jQuery, window, document );

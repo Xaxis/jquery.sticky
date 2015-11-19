@@ -21,7 +21,6 @@ The below example demonstrates a navigation div that sticks to the top of the sc
 reached while scrolling down the screen.
 
 ```javascript
-// Stick element when bottom is reached
 $('#sticky-nav').sticky({
     start: 'bottom'
 });
@@ -38,7 +37,6 @@ Often when an element moves from being positioned relatively to fixed the effect
 to solve for this.
 
 ```javascript
-// Stick element when bottom is reached
 $('#sticky-nav').sticky({
     start: 'bottom',
     smooth: true
@@ -51,10 +49,28 @@ Sometimes you'll want multiple elements to stick to the top when they scroll out
 order.
 
 ```javascript
-// Stick element when bottom is reached
 $('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
     start: 'bottom',
     smooth: true,
     stack: true
+});
+```
+
+### Callbacks On Sticky Events
+
+It is often useful to have the ability to run some of your own code after an element has become a "sticky" or after it
+has gone back to its original positioning.
+
+```javascript
+$('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
+    start: 'bottom',
+    smooth: true,
+    stack: true,
+    onStick: function( elm ) {
+        elm.addClass('transition');
+    },
+    onUnstick: function( elm ) {
+        elm.removeClass('transition');
+    }
 });
 ```
