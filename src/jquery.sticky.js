@@ -148,7 +148,7 @@
         }
 
         // Execute callback
-        if (this.options.onStick) {
+        if (this.options.onUnstick) {
           this.options.onUnstick(elm);
         }
       }
