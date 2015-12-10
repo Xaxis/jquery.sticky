@@ -112,17 +112,21 @@
       if (!stuck) {
         elm.data('stuck', true);
         elm.data('stick_point', scroll_pos);
-        elm.css({
-          position: 'fixed',
-          top: elm.data('stack_height')
-        });
 
-        // Create smooth position transition by inserting same dimension element in place of fixed dimension element
+        // Create smooth position transition by inserting same dimension element in place of fixed dimension element.
+        // - This must be done before sticking the element to prevent an edge case that prevents the user from scrolling
+        //   down when there is not enough scroll height.
         if (this.options.smooth) {
           var dim_elm = $('<div>');
           dim_elm.css('height', elm.outerHeight()).insertBefore(elm);
           elm.data('dim_elm', dim_elm);
         }
+
+        // Stick the element
+        elm.css({
+          position: 'fixed',
+          top: elm.data('stack_height')
+        });
 
         // Execute callback
         if (this.options.onStick) {
