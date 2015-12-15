@@ -35,20 +35,34 @@
      */
     init: function() {
       var
-        plugin        = this;
-      this.trackElementScrollPosition();
+        plugin              = this,
+        stack_height        = 0;
+
+      // Update stack height with any previous stacked elements
+      if (plugin.options.stack) {
+        $('[data-sticky-stack-elm]').each(function(idx, value) {
+          var
+            s_elm       = $(value),
+            s_elm_h     = s_elm.outerHeight();
+          stack_height += s_elm_h;
+        });
+      }
+
+      // Start scroll handler
+      this.trackElementScrollPosition(stack_height);
       $(window).on('scroll', function() {
-        plugin.trackElementScrollPosition.call(plugin);
+        plugin.trackElementScrollPosition.call(plugin, stack_height);
       });
     },
 
     /**
      * Update "stickyness" based on element's position relative to scrolling.
      */
-    trackElementScrollPosition: function() {
+    trackElementScrollPosition: function( stack_height ) {
       var
-        plugin            = this,
-        stack_height      = 0;
+        plugin            = this;
+
+      // Iterate over sticky elements
       $(this.element).each(function(idx, value) {
         var
           elm               = $(value),
@@ -57,7 +71,13 @@
           elm_h             = elm.outerHeight(),
           scroll_pos        = $(window).scrollTop(),
           position          = elm.css('position'),
-          stick_point       = elm.data('stick_point');
+          stick_point       = elm.data('stick_point'),
+          sticky_elm_len    = $('[data-sticky-stack-elm]').length;
+
+        // Set global element attribute on all elements that are to be stacked
+        if (!elm.attr('data-sticky-stack-elm') && plugin.options.stack) {
+          elm.attr('data-sticky-stack-elm', sticky_elm_len + 1);
+        }
 
         // Set position height to stack height
         elm.data('stack_height', stack_height);
