@@ -35,7 +35,7 @@
             padding: 20px;
         }
         .transition {
-            opacity: 0.4;
+            opacity: 0.7;
             transition: opacity 400ms ease;
         }
     </style>
@@ -85,24 +85,19 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 <script>
 
-    // Stick element when top is reached
+    // Stick element when top is reached (scrolling down) and un-stick when bottom is reached (scrolling up)
     /*
     $('#sticky-nav-1').sticky({
-        start: 'top'
+        start: 'top',
+        end: 'bottom'
     });
     */
 
-    // Stick element when bottom is reached
+    // Stick element when bottom is reached (scrolling down) and un-stick when bottom is reached (scrolling up)
     /*
     $('#sticky-nav-1').sticky({
-        start: 'middle'
-    });
-    */
-
-    // Stick element when bottom is reached
-    /*
-    $('#sticky-nav-1').sticky({
-        start: 'bottom'
+        start: 'bottom',
+        end: 'bottom
     });
     */
 
@@ -110,6 +105,7 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
     /*
     $('#sticky-nav-1, #sticky-nav-2').sticky({
         start: 'bottom',
+        end: 'top',
         smooth: true
     });
     */
@@ -141,6 +137,7 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
     /*
     $('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3, #sticky-nav-4').sticky({
         start: 'bottom',
+        end: 'top',
         smooth: true,
         stack: true,
         onStick: function( elm ) {
@@ -155,6 +152,7 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
     // Multiple instances
     $('#sticky-nav-1').sticky({
         start: 'bottom',
+        end: 'top',
         smooth: true,
         stack: true,
         onStick: function( elm ) {
@@ -166,6 +164,7 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
     });
     $('#sticky-nav-2, #sticky-nav-3').sticky({
         start: 'top',
+        end: 'bottom',
         smooth: true,
         stack: true,
         onStick: function( elm ) {

@@ -18,18 +18,16 @@ Include `jquery.sticky.min.js` after jQuery in your header or elsewhere on your 
 ### Stick an Element 
 
 The below example demonstrates a navigation div that sticks to the top of the screen after the element's bottom has been
-reached while scrolling down the screen.
+reached while scrolling down and un-sticks when the top of the element has been reached while scrolling up.
 
 ```javascript
 $('#sticky-nav').sticky({
-    start: 'bottom'
+    start: 'bottom',
+    end: 'top'
 });
 ```
 
-The element will return to its original position after its original trigger point has been reached again upon scrolling
-up the screen.
-
-Available property values for `start` are `top`, `middle`, and `bottom`.
+Available property values for `start` and `end` are `top`, and `bottom`.
 
 ### Smooth Element Transitions
 
@@ -39,6 +37,7 @@ to solve for this.
 ```javascript
 $('#sticky-nav').sticky({
     start: 'bottom',
+    end: 'bottom',
     smooth: true
 });
 ```
@@ -51,6 +50,7 @@ order.
 ```javascript
 $('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
     start: 'bottom',
+    end: 'top',
     smooth: true,
     stack: true
 });
@@ -64,6 +64,7 @@ has gone back to its original positioning.
 ```javascript
 $('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
     start: 'bottom',
+    end: 'bottom',
     smooth: true,
     stack: true,
     onStick: function( elm ) {
