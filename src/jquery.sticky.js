@@ -94,7 +94,7 @@
               plugin.stickElement.call(plugin, elm, (elm_top - stack_height));
             }
             else if (
-              (position == 'fixed' && plugin.options.end == 'top' && (scroll_pos < stick_point))
+              (position == 'fixed' && plugin.options.end == 'top' && (scroll_pos <= stick_point))
               ||
               (position == 'fixed' && plugin.options.end == 'bottom' && (scroll_pos < (stick_point - elm_h)))
               ||
@@ -110,7 +110,7 @@
               plugin.stickElement.call(plugin, elm, (elm_top + elm_h - stack_height));
             }
             else if (
-              (position == 'fixed' && plugin.options.end == 'top' && (scroll_pos < (stick_point - elm_h)))
+              (position == 'fixed' && plugin.options.end == 'top' && (scroll_pos <= (stick_point - elm_h)))
               ||
               (position == 'fixed' && plugin.options.end == 'bottom' && (scroll_pos < (stick_point)))
               ||

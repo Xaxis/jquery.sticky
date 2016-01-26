@@ -151,14 +151,16 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
     // Multiple instances
     $('#sticky-nav-1').sticky({
-        start: 'bottom',
+        start: 'top',
         end: 'top',
         smooth: true,
         stack: true,
         onStick: function( elm ) {
+            console.log('stick');
             elm.addClass('transition');
         },
         onUnstick: function( elm ) {
+            console.log('unstick');
             elm.removeClass('transition');
         }
     });
