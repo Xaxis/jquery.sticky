@@ -1,13 +1,25 @@
 # jquery.sticky
 
+## Table of Contents
+
+  * [Summary](#summary)
+      * [Author](#author)
+  * [Usage](#usage)
+      * [Stick an Element](#stick-an-element)
+      * [Smooth Element Transitions](#smooth-element-transitions)
+      * [Stack Multiple Stickies](#stack-multiple-stickies)
+      * [Callbacks on Sticky Events](#callbacks-on-sticky-events)
+      * [Adding an Offset](#adding-an-offset)
+      * [Demo](#demo)
+
 ## Summary
 
-A jQuery plugin for sticking an element at a fixed position when a given scroll point is reached.
+A jQuery plugin for sticking an element at a fixed position when a given scroll point is reached. 
 
 This plugin is highly useful for creating navigation systems that "stick" to the top of the viewport at a given point 
-after a user has scrolled down.
+after a user has scrolled down. This feature is sometimes known as scroll-linked positioning.
 
-## Author
+### Author
 
 Wil Neeley ( [@wilneeley](http://twitter.com/wilneeley) / [github.com](https://github.com/Xaxis) )
 
@@ -75,3 +87,31 @@ $('#sticky-nav-1, #sticky-nav-2, #sticky-nav-3').sticky({
     }
 });
 ```
+
+### Adding an Offset
+
+Sometimes you'll want to trigger your sticky element at an arbitrary point. To do this add an offset. This allows you to
+stick/unstick your element at a defined distance before the element reaches the top of the screen.
+
+```javascript
+$('#sticky-nav-4').sticky({
+    start: 'top',
+    end: 'top',
+    smooth: true,
+    stack: true,
+    offset: 50,
+    onStick: function( elm ) {
+        elm.addClass('transition');
+    },
+    onUnstick: function( elm ) {
+        elm.removeClass('transition');
+    }
+});
+```
+
+The above code triggers the stick event 50 pixels before the element reaches the top of the screen (or element stack if other
+elements are being stuck).
+
+### Demo
+
+![Demo](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Demo")

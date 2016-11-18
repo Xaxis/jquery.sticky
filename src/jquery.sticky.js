@@ -75,7 +75,8 @@
           scroll_pos          = $(window).scrollTop(),
           position            = elm.css('position'),
           stick_point         = elm.data('stick_point'),
-          sticky_elm_len      = $('[data-sticky-stack-elm]').length;
+          sticky_elm_len      = $('[data-sticky-stack-elm]').length,
+          offset              = plugin.options.offset || 0;
 
         // Set global element attribute on all elements that are to be stacked
         if (!elm.attr('data-sticky-stack-elm') && plugin.options.stack) {
@@ -90,8 +91,8 @@
 
           // Top
           case 'top' :
-            if (position != 'fixed' && (scroll_pos + stack_height > elm_top)) {
-              plugin.stickElement.call(plugin, elm, (elm_top - stack_height));
+            if (position != 'fixed' && (scroll_pos + stack_height + offset > elm_top)) {
+              plugin.stickElement.call(plugin, elm, (elm_top - stack_height - offset));
             }
             else if (
               (position == 'fixed' && plugin.options.end == 'top' && (scroll_pos <= stick_point))
@@ -106,8 +107,8 @@
 
           // Bottom
           case 'bottom' :
-            if (position != 'fixed' && (scroll_pos > (elm_top + elm_h - stack_height))) {
-              plugin.stickElement.call(plugin, elm, (elm_top + elm_h - stack_height));
+            if (position != 'fixed' && (scroll_pos > (elm_top + elm_h - stack_height + offset))) {
+              plugin.stickElement.call(plugin, elm, (elm_top + elm_h - stack_height + offset));
             }
             else if (
               (position == 'fixed' && plugin.options.end == 'top' && (scroll_pos <= (stick_point - elm_h)))

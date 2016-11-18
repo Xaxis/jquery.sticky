@@ -177,6 +177,21 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
         }
     });
 
+    // Using an offset
+    $('#sticky-nav-4').sticky({
+        start: 'top',
+        end: 'top',
+        smooth: true,
+        stack: true,
+        offset: 50,
+        onStick: function( elm ) {
+            elm.addClass('transition');
+        },
+        onUnstick: function( elm ) {
+            elm.removeClass('transition');
+        }
+    });
+
 </script>
 </body>
 </html>
