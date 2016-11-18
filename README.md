@@ -17,7 +17,7 @@
 A jQuery plugin for sticking an element at a fixed position when a given scroll point is reached. 
 
 This plugin is highly useful for creating navigation systems that "stick" to the top of the viewport at a given point 
-after a user has scrolled down. This feature is sometimes known as scroll-linked positioning.
+after a user has scrolled down. This feature is sometimes known as [scroll-linked positioning](https://developer.mozilla.org/en-US/docs/Mozilla/Performance/Scroll-linked_effects).
 
 ### Author
 
