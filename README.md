@@ -114,4 +114,4 @@ elements are being stuck).
 
 ### Demo
 
-![Demo](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Demo")
+![Demo](https://raw.githubusercontent.com/Xaxis/jquery.sticky/master/test/assets/sticky-nav-demo.gif "Demo")
