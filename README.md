@@ -10,6 +10,7 @@
       * [Stack Multiple Stickies](#stack-multiple-stickies)
       * [Callbacks on Sticky Events](#callbacks-on-sticky-events)
       * [Adding an Offset](#adding-an-offset)
+      * [Scrolling Callback](#scrolling-callback)
       * [Demo](#demo)
 
 ## Summary
@@ -111,6 +112,22 @@ $('#sticky-nav-4').sticky({
 
 The above code triggers the stick event 50 pixels before the element reaches the top of the screen (or element stack if other
 elements are being stuck).
+
+### Scrolling Callback
+
+As a convenience you can attach a callback to the scroll event. This way you don't need to create an additional scroll handler.
+
+```javascript
+$('#sticky-nav-4').sticky({
+    start: 'top',
+    end: 'top',
+    smooth: true,
+    stack: true,
+    onScroll: function( elm ) {
+        console.log('Yay, I am scrolling!');
+    }
+});
+```
 
 ### Demo
 

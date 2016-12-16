@@ -16,7 +16,8 @@
       smooth: false,
       stack: false,
       onStick: null,
-      onUnstick: null
+      onUnstick: null,
+      onScroll: null
     };
 
   // Plugin constructor
@@ -125,6 +126,11 @@
         // Increment stacked elements total height
         if (plugin.options.stack) {
           stack_height += elm_h;
+        }
+
+        // Call additional scroll handler if passed
+        if (plugin.options.onScroll) {
+          plugin.options.onScroll.call(plugin, elm);
         }
       });
     },
