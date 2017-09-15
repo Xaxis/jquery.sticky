@@ -38,16 +38,32 @@
     init: function() {
       var
         plugin              = this,
-        stack_height        = 0;
+        stack_height        = 0,
+        last_order          = window.$sticky_last_init_order || 0;
 
-      // Update stack height with any previous stacked elements
-      if (plugin.options.stack) {
-        $('[data-sticky-stack-elm]').each(function(idx, value) {
-          var
-            s_elm       = $(value),
-            s_elm_h     = s_elm.outerHeight();
-          stack_height += s_elm_h;
-        });
+      // Initialize elements based on order property
+      if (plugin.options.order) {
+        if (last_order + 1 == plugin.options.order) {
+          window.$sticky_last_init_order = plugin.options.order;
+        } else {
+          var this_interval = setInterval(function() {
+            if (plugin.options.order - 1 == window.$sticky_last_init_order) {
+              plugin.init();
+              clearInterval(this_interval);
+            }
+          }, 50);
+          return false;
+        }
+
+        // Update stack height with any previous stacked elements
+        if (plugin.options.stack) {
+          $('[data-sticky-stack-elm]').each(function(idx, value) {
+            var
+              s_elm       = $(value),
+              s_elm_h     = s_elm.outerHeight();
+            stack_height += s_elm_h;
+          });
+        }
       }
 
       // Start scroll handler

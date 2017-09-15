@@ -151,11 +151,13 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
     */
 
     // Multiple instances
+    /*
     $('#sticky-nav-1').sticky({
         start: 'top',
         end: 'top',
         smooth: true,
         stack: true,
+        order: 2,
         onStick: function( elm ) {
             console.log('stick');
             elm.addClass('transition');
@@ -177,8 +179,10 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
             elm.removeClass('transition');
         }
     });
+    */
 
     // Using an offset
+    /*
     $('#sticky-nav-4').sticky({
         start: 'top',
         end: 'top',
@@ -192,8 +196,10 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
             elm.removeClass('transition');
         }
     });
+    */
 
     // On scroll callback
+    /*
     $('#sticky-nav-4').sticky({
         start: 'top',
         end: 'top',
@@ -208,6 +214,53 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
         },
         onScroll: function( elm ) {
             console.log('Yay, I am scrolling!');
+        }
+    });
+    */
+
+
+    // Ordered initialization
+    $('#sticky-nav-3').sticky({
+        start: 'top',
+        end: 'top',
+        smooth: true,
+        stack: true,
+        offset: 0,
+        order: 3,
+        onStick: function( elm ) {
+            elm.addClass('transition');
+        },
+        onUnstick: function( elm ) {
+            elm.removeClass('transition');
+        }
+    });
+    $('#sticky-nav-1').sticky({
+        start: 'bottom',
+        end: 'top',
+        smooth: true,
+        stack: true,
+        order: 2,
+        onStick: function( elm ) {
+            console.log('stick');
+            elm.addClass('transition');
+        },
+        onUnstick: function( elm ) {
+            console.log('unstick');
+            elm.removeClass('transition');
+        }
+    });
+    $('#sticky-nav-4').sticky({
+        start: 'top',
+        end: 'top',
+        smooth: true,
+        stack: true,
+        offset: 0,
+        order: 1,
+        onStick: function( elm ) {
+            elm.addClass('transition');
+        },
+        onUnstick: function( elm ) {
+            elm.removeClass('transition');
         }
     });
 

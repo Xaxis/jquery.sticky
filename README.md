@@ -129,6 +129,59 @@ $('#sticky-nav-4').sticky({
 });
 ```
 
+### Ordering execution
+
+On a site with many dependencies or multiple JavaScript files being loaded out of order it can sometimes be crucial to set the
+initialization order of jquery.sticky. When the `order` property is set all instances of jquery.sticky must use the property. The
+order starts at 1 and sequentially ends at an increment of your last initialization (if your initializing jquery.sticky 4 times your 
+order properties will be 1 through 4. If you skip any numbers in between some of your jquery.sticky initializations will not work.
+
+```javascript
+$('#sticky-nav-3').sticky({
+    start: 'top',
+    end: 'top',
+    smooth: true,
+    stack: true,
+    offset: 0,
+    order: 3,
+    onStick: function( elm ) {
+        elm.addClass('transition');
+    },
+    onUnstick: function( elm ) {
+        elm.removeClass('transition');
+    }
+});
+$('#sticky-nav-1').sticky({
+    start: 'bottom',
+    end: 'top',
+    smooth: true,
+    stack: true,
+    order: 2,
+    onStick: function( elm ) {
+        console.log('stick');
+        elm.addClass('transition');
+    },
+    onUnstick: function( elm ) {
+        console.log('unstick');
+        elm.removeClass('transition');
+    }
+});
+$('#sticky-nav-4').sticky({
+    start: 'top',
+    end: 'top',
+    smooth: true,
+    stack: true,
+    offset: 0,
+    order: 1,
+    onStick: function( elm ) {
+        elm.addClass('transition');
+    },
+    onUnstick: function( elm ) {
+        elm.removeClass('transition');
+    }
+});
+```
+
 ### Demo
 
 ![Demo](https://raw.githubusercontent.com/Xaxis/jquery.sticky/master/test/assets/sticky-nav-demo.gif "Demo")
