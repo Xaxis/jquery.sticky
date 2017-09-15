@@ -195,7 +195,14 @@
 
   // Plugin wrapper
   $.fn[plugin_name] = function ( options ) {
-    return $.data(this, 'plugin_' + plugin_name, new Plugin( this, options ));
+
+    // Prevent element from initializing twice
+    if (!this.data('sticky-initialized')) {
+      this.data('sticky-initialized', true);
+      return $.data(this, 'plugin_' + plugin_name, new Plugin( this, options ))
+    } else {
+      throw new Error('jQuery.sticky - Attempting to initialize element multiple times.');
+    }
   };
 
 })( jQuery, window, document );
